@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     }
 
 
@@ -27,12 +26,16 @@ public class MainActivity extends AppCompatActivity {
 this method will display the text when the order button is clicked.
  */
     public void makeOrder(View view) {
-        TextView textView =(TextView)findViewById(R.id.quantity_text);
-        textView.setText(String.valueOf("Hello world by ahmad"));
+        display(1);
     }
 
 
+    public void display(int number) {
+        TextView textView = (TextView) findViewById(R.id.quantity_text);
+        textView.setText("" + number);
 
+
+    }
 
 }
 
