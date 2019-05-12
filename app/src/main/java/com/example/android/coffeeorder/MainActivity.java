@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
+
 public class MainActivity extends AppCompatActivity {
 
 
+    int price = 5;
 
     /*
     this application display order form to order coffee.
@@ -23,19 +26,34 @@ public class MainActivity extends AppCompatActivity {
 
 
 /*
-this method will display the text when the order button is clicked.
+this method will display the number of coffee cups ordered when the order button is clicked.
+also it will display the price using @displayPrice method
  */
     public void makeOrder(View view) {
-        display(1);
+        displayQuantity(1);
+        // price is an integer variable fixed to 5$ price
+        displayPrice(price);
+    }
+
+    /*
+    this method will take a number and display it on the screen when called
+     */
+    public void displayQuantity(int number) {
+        TextView textQuantity = (TextView) findViewById(R.id.quantity_text);
+        textQuantity.setText("" + number);
     }
 
 
-    public void display(int number) {
-        TextView textView = (TextView) findViewById(R.id.quantity_text);
-        textView.setText("" + number);
+/*
+this method will display the price of the given quantity of coffee
+ */
 
-
+    public void displayPrice(int coffeePrice) {
+        TextView textPrice = (TextView) findViewById(R.id.price_text_view);
+        textPrice.setText(NumberFormat.getCurrencyInstance().format(coffeePrice));
     }
+
+
 
 }
 
