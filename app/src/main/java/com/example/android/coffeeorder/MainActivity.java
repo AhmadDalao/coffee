@@ -10,13 +10,13 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     // to represent the coffee quantity
-    int CoffeeQuantity = 2;
+    int CoffeeQuantity = 0;
     // to represent the price of the cup of coffee
     int price = 5;
     /* counter to start at 0 will increase or decrease based on each click by the methods below
          add and subtract coffee
         */
-    int counter = 0;
+    int counter = 1;
 
     /*
     this application display order form to order coffee.
@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
     also it will display the price using @displayPrice method
      */
     public void makeOrder(View view) {
-        displayQuantity(counter);
+        displayQuantity(CoffeeQuantity);
         // price is an integer variable fixed to 5$ price
-        displayPrice(price * counter);
+        displayPrice(price * CoffeeQuantity);
     }
 
     /*
@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
     this method is going to add the coffee quantity by one when clicked
      */
     public void AddCoffee(View view) {
-        counter += 1;
-        displayQuantity(counter);
+        CoffeeQuantity += counter;
+        displayQuantity(CoffeeQuantity);
     }
 
 
@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
        this method is going to subtract  the coffee quantity by one when clicked
         */
     public void SubtractCoffee(View view) {
-        counter -= 1;
-        displayQuantity(counter);
+        CoffeeQuantity -= counter;
+        displayQuantity(CoffeeQuantity);
 
 
     }
