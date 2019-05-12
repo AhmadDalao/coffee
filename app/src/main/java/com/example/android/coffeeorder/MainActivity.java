@@ -9,7 +9,9 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    // to represent the coffee quantity
+    int CoffeeQuantity = 2;
+    // to represent the price of the cup of coffee
     int price = 5;
 
     /*
@@ -21,18 +23,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
     }
 
 
-/*
-this method will display the number of coffee cups ordered when the order button is clicked.
-also it will display the price using @displayPrice method
- */
+    /*
+    this method will display the number of coffee cups ordered when the order button is clicked.
+    also it will display the price using @displayPrice method
+     */
     public void makeOrder(View view) {
-        displayQuantity(1);
+        displayQuantity(CoffeeQuantity);
         // price is an integer variable fixed to 5$ price
-        displayPrice(price);
+        displayPrice(price * CoffeeQuantity);
     }
 
     /*
@@ -44,15 +45,14 @@ also it will display the price using @displayPrice method
     }
 
 
-/*
-this method will display the price of the given quantity of coffee
- */
+    /*
+    this method will display the price of the given quantity of coffee
+     */
 
     public void displayPrice(int coffeePrice) {
         TextView textPrice = (TextView) findViewById(R.id.price_text_view);
         textPrice.setText(NumberFormat.getCurrencyInstance().format(coffeePrice));
     }
-
 
 
 }
