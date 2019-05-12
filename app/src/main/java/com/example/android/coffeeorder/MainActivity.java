@@ -13,6 +13,10 @@ public class MainActivity extends AppCompatActivity {
     int CoffeeQuantity = 2;
     // to represent the price of the cup of coffee
     int price = 5;
+    /* counter to start at 0 will increase or decrease based on each click by the methods below
+         add and subtract coffee
+        */
+    int counter = 0;
 
     /*
     this application display order form to order coffee.
@@ -25,15 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     /*
     this method will display the number of coffee cups ordered when the order button is clicked.
     also it will display the price using @displayPrice method
      */
     public void makeOrder(View view) {
-        displayQuantity(CoffeeQuantity);
+        displayQuantity(counter);
         // price is an integer variable fixed to 5$ price
-        displayPrice(price * CoffeeQuantity);
+        displayPrice(price * counter);
     }
 
     /*
@@ -43,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         TextView textQuantity = (TextView) findViewById(R.id.quantity_text);
         textQuantity.setText("" + number);
     }
-
 
     /*
     this method will display the price of the given quantity of coffee
@@ -55,5 +57,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /*
+    this method is going to add the coffee quantity by one when clicked
+     */
+    public void AddCoffee(View view) {
+        counter += 1;
+        displayQuantity(counter);
+    }
+
+
+    /*
+       this method is going to subtract  the coffee quantity by one when clicked
+        */
+    public void SubtractCoffee(View view) {
+        counter -= 1;
+        displayQuantity(counter);
+
+
+    }
 }
 
