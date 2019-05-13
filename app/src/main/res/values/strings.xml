@@ -7,4 +7,5 @@
     <string name="price_in_dollar">$0</string>
     <string name="add">add</string>
     <string name="subt">subt</string>
+    <string name="enter_your_name_please">Enter your name please!</string>
 </resources>
