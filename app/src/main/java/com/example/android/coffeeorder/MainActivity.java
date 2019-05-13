@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
         CheckBox cream = (CheckBox) findViewById(R.id.cream_checkbox);
 
+        // handling the toppings with if else statement
         if (chocolate.isChecked() && cream.isChecked()) {
             // make something here
             price = (coffeeQuantity * 5);
