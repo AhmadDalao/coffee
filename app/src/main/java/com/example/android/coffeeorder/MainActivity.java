@@ -41,23 +41,21 @@ public class MainActivity extends AppCompatActivity {
      using the displayPrice method and pass in the price variable after multiply it by 5 as a price
      */
     public void makeOrder(View view) {
-
-
         CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
         CheckBox cream = (CheckBox) findViewById(R.id.cream_checkbox);
 
         if (chocolate.isChecked() && cream.isChecked()) {
             // make something here
             price = (coffeeQuantity * 5);
-            price = price + creamPrice + chocolatePrice;
+            price = price + (chocolatePrice + creamPrice) * coffeeQuantity;
             displayPrice(price);
         } else if (chocolate.isChecked()) {
             price = (coffeeQuantity * 5);
-            price = price + chocolatePrice;
+            price = price + chocolatePrice * coffeeQuantity;
             displayPrice(price);
         } else if (cream.isChecked()) {
             price = (coffeeQuantity * 5);
-            price = price + creamPrice;
+            price = price + creamPrice * coffeeQuantity;
             displayPrice(price);
         } else price = coffeeQuantity * 5;
         displayPrice(price);
@@ -66,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         EditText myname = (EditText) findViewById(R.id.edit_text);
         // need to save myname in temp holder first and get the name using getText  , you must also cast the text to be safe.
         String tempHolder = String.valueOf(myname.getText());
-
         // saving the name from the user along side the price and pass it to the method displayMessage to handle it later
         String TheName = "The total is: $" + price + "\n";
         TheName = TheName + "Thank you " + " " + tempHolder;
