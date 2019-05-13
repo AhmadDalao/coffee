@@ -10,15 +10,13 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-    // to represent the coffee quantity
-    private int CoffeeQuantity = 0;
-    // to represent the price of the cup of coffee
-    private int price = 0;
-    /* counter to start at 0 will increase or decrease based on each click by the methods below
-         add and subtract coffee
-        */
-    private int counter = 1;
 
+    // represents the coffee quantity with this variable
+    int coffeeQuantity = 0;
+    // making a counter to increase or decrease later
+    int counter = 1;
+    // make a price variable set it to 0
+    int price = 0;
 
     /*
     this application display order form to order coffee.
@@ -29,72 +27,81 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-    }
+    } // end of onCreate
 
     /*
-    this method will display the number of coffee cups ordered when the order button is clicked.
-    also it will display the price using @displayPrice method
+    this method will display the price  when the button order is clicked
+     using the displayPrice method and pass in the price variable after multiply it by 5 as a price
      */
     public void makeOrder(View view) {
-        displayQuantity(CoffeeQuantity);
-        // price is an integer variable fixed to 5$ price
-        //  displayPrice(price * CoffeeQuantity  );
-        price = CoffeeQuantity * 5;
+        price = coffeeQuantity * 5;
+        displayPrice(price);
 
-        // take the name from the user and save , inside the variable myname
-
+        // need to get the name from the edit text entered by the user to pass it to displayMessage later on
         EditText myname = (EditText) findViewById(R.id.edit_text);
-        // make a string variable and store the myname variable inside.  given from the user inside it
-        String edittextName = String.valueOf(myname.getText());
+        // need to save myname in temp holder first and get the name using getText  , you must also cast the text to be safe.
+        String tempHolder = String.valueOf(myname.getText());
 
-        String priceMessage = "Total : $ " + price;
-        // now pass the variable edittextName that contains the name inside the new variable priceMessage.
-        priceMessage = priceMessage + "\n thank you" + " " + edittextName;
-        displayMessage(priceMessage);
+        // saving the name from the user along side the price and pass it to the method displayMessage to handle it later
+        String TheName = "The total is: $" + price + "\n";
+        TheName = TheName + "Thank you " + " " + tempHolder;
+        // passing the variable TheName to the method displayMessage()
+        displayMessage(TheName);
     }
 
     /*
-    this method will take a number and display it on the screen when called
+    this method is going to take the name from the user when entered in edit text
+    we need to pass this method to makeOrder method to handle it probably
+    going to add the new message alongside the displayPrice method
+
      */
-    public void displayQuantity(int number) {
-        TextView textQuantity = (TextView) findViewById(R.id.quantity_text);
-        textQuantity.setText("" + number);
-    }
-
-    /*
-    this method will display the price of the given quantity of coffee
-     */
-
-    public void displayPrice(int coffeePrice) {
-        TextView textPrice = (TextView) findViewById(R.id.price_text_view);
-        textPrice.setText(NumberFormat.getCurrencyInstance().format(coffeePrice));
-
-    }
-
-    /*
-    this method will display thank you message when the order is done , need to link it with @makeOrder method
-     */
-
     public void displayMessage(String message) {
-        TextView messagePrice = (TextView) findViewById(R.id.price_text_view);
-        messagePrice.setText(message);
+        TextView textView = (TextView) findViewById(R.id.price_text);
+        textView.setText(message);
     }
 
     /*
-    this method is going to add the coffee quantity by one when clicked
+    this method is going to change the quantity text view and  when every the add and subtract
+    buttons are clicked
+    basically it will display the quantity
      */
-    public void AddCoffee(View view) {
-        CoffeeQuantity += counter;
-        displayQuantity(CoffeeQuantity);
+
+    public void displayQuantity(int number) {
+        TextView textView = (TextView) findViewById(R.id.quantity_text);
+        textView.setText("" + number);
     }
 
     /*
-       this method is going to subtract  the coffee quantity by one when clicked
-        */
-    public void SubtractCoffee(View view) {
-        CoffeeQuantity -= counter;
-        displayQuantity(CoffeeQuantity);
-
+    this method is going to display the Price of the ordered coffee when the button ordered is clicked on
+    it will change the price text view and add the price based on the coffee quantity
+    the price text will change to 0.00  that's why we are using number format and get getCurrencyInstance
+     */
+    public void displayPrice(int coffeePrice) {
+        TextView coffee = (TextView) findViewById(R.id.price_text);
+        coffee.setText(NumberFormat.getCurrencyInstance().format(coffeePrice));
     }
-}
+
+    /*
+    this method will decrease the coffeeQuantity variable by 1
+    you need to call the method displayQuantity to pass the quantity later on
+     */
+    public void SubtractCoffee(View view) {
+        if (coffeeQuantity > 0) {
+            coffeeQuantity -= counter;
+            displayQuantity(coffeeQuantity);
+        }
+    }
+
+    /*
+  this method will increase the coffeeQuantity variable by 1
+  you need to call the method displayQuantity to pass the quantity later on
+   */
+    public void AddCoffee(View view) {
+        if (coffeeQuantity < 100) {
+            coffeeQuantity += counter;
+            displayQuantity(coffeeQuantity);
+        }
+    }
+
+} // end of class
 
