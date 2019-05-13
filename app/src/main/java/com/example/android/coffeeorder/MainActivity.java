@@ -3,6 +3,7 @@ package com.example.android.coffeeorder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,6 +18,12 @@ public class MainActivity extends AppCompatActivity {
     int counter = 1;
     // make a price variable set it to 0
     int price = 0;
+
+    // the price of topping chocolate
+    int chocolatePrice = 3;
+    // the price of topping cream
+    int creamPrice = 2;
+
 
     /*
     this application display order form to order coffee.
@@ -34,7 +41,25 @@ public class MainActivity extends AppCompatActivity {
      using the displayPrice method and pass in the price variable after multiply it by 5 as a price
      */
     public void makeOrder(View view) {
-        price = coffeeQuantity * 5;
+
+
+        CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        CheckBox cream = (CheckBox) findViewById(R.id.cream_checkbox);
+
+        if (chocolate.isChecked() && cream.isChecked()) {
+            // make something here
+            price = (coffeeQuantity * 5);
+            price = price + creamPrice + chocolatePrice;
+            displayPrice(price);
+        } else if (chocolate.isChecked()) {
+            price = (coffeeQuantity * 5);
+            price = price + chocolatePrice;
+            displayPrice(price);
+        } else if (cream.isChecked()) {
+            price = (coffeeQuantity * 5);
+            price = price + creamPrice;
+            displayPrice(price);
+        } else price = coffeeQuantity * 5;
         displayPrice(price);
 
         // need to get the name from the edit text entered by the user to pass it to displayMessage later on

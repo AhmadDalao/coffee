@@ -65,6 +65,24 @@
     </LinearLayout>
 
 
+    <CheckBox
+        android:id="@+id/chocolate_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/chocolate"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@android:color/black" />
+
+    <CheckBox
+        android:id="@+id/cream_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/cream"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@android:color/black" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
