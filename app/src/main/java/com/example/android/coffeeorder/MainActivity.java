@@ -32,17 +32,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-        this method will display the number of coffee cups ordered when the order button is clicked.
-        also it will display the price using @displayPrice method
-         */
+    this method will display the number of coffee cups ordered when the order button is clicked.
+    also it will display the price using @displayPrice method
+     */
     public void makeOrder(View view) {
         displayQuantity(CoffeeQuantity);
         // price is an integer variable fixed to 5$ price
         //  displayPrice(price * CoffeeQuantity  );
         price = CoffeeQuantity * 5;
+
+        // take the name from the user and save , inside the variable myname
+
         EditText myname = (EditText) findViewById(R.id.edit_text);
+        // make a string variable and store the myname variable inside.  given from the user inside it
         String edittextName = String.valueOf(myname.getText());
+
         String priceMessage = "Total : $ " + price;
+        // now pass the variable edittextName that contains the name inside the new variable priceMessage.
         priceMessage = priceMessage + "\n thank you" + " " + edittextName;
         displayMessage(priceMessage);
     }
@@ -65,8 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     /*
     this method will display thank you message when the order is done , need to link it with @makeOrder method
      */
@@ -74,9 +78,7 @@ public class MainActivity extends AppCompatActivity {
     public void displayMessage(String message) {
         TextView messagePrice = (TextView) findViewById(R.id.price_text_view);
         messagePrice.setText(message);
-
     }
-
 
     /*
     this method is going to add the coffee quantity by one when clicked
@@ -86,14 +88,12 @@ public class MainActivity extends AppCompatActivity {
         displayQuantity(CoffeeQuantity);
     }
 
-
     /*
        this method is going to subtract  the coffee quantity by one when clicked
         */
     public void SubtractCoffee(View view) {
         CoffeeQuantity -= counter;
         displayQuantity(CoffeeQuantity);
-
 
     }
 }
