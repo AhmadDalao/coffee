@@ -46,19 +46,30 @@ public class MainActivity extends AppCompatActivity {
 
         // handling the toppings with if else statement
         if (chocolate.isChecked() && cream.isChecked()) {
-            // make something here
+
+            // ( 1 * 5 ) = 5 price holds 5
             price = (coffeeQuantity * 5);
+            // 5 + ( 3 + 2 ) * 1
             price = price + (chocolatePrice + creamPrice) * coffeeQuantity;
+            // price is 10
             displayPrice(price);
         } else if (chocolate.isChecked()) {
+            // ( 1 * 5 ) = 5 price holds
             price = (coffeeQuantity * 5);
+            // 5 + 3 * 1
             price = price + chocolatePrice * coffeeQuantity;
+            // price is 8
             displayPrice(price);
         } else if (cream.isChecked()) {
+            // ( 1 * 5 ) = 5 price is 5
             price = (coffeeQuantity * 5);
+            // 5 + 2 * 1
             price = price + creamPrice * coffeeQuantity;
+            // price is 7
             displayPrice(price);
+            // 1 * 5 = 5
         } else price = coffeeQuantity * 5;
+        // price is 5
         displayPrice(price);
 
         // need to get the name from the edit text entered by the user to pass it to displayMessage later on
