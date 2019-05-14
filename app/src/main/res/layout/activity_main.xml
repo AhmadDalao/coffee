@@ -11,20 +11,20 @@
 
 
     <EditText
+        android:id="@+id/edit_text"
         android:layout_width="match_parent"
-        android:hint="@string/enter_your_name_please"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_text" />
+        android:hint="@string/enter_your_name_please" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/quantity"
-        android:textSize="32sp"
         android:textAllCaps="true"
-        android:textStyle="italic"
         android:textColor="@color/colorAccent"
-        android:layout_marginTop="16dp" />
+        android:textSize="32sp"
+        android:textStyle="italic" />
 
 
     <LinearLayout
@@ -70,6 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:paddingLeft="24dp"
         android:text="@string/chocolate"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="@android:color/black" />
@@ -79,6 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:paddingLeft="24dp"
         android:text="@string/cream"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="@android:color/black" />
@@ -86,21 +88,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/price"
         android:textAllCaps="true"
         android:textColor="@color/colorAccent"
         android:textSize="32sp"
-        android:textStyle="italic"
-        android:layout_marginTop="16dp" />
+        android:textStyle="italic" />
 
     <TextView
+        android:id="@+id/price_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/price_text"
         android:layout_marginTop="16dp"
         android:text="@string/price_in_dollar"
         android:textColor="@android:color/black"
-        android:textSize="32sp"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
 
@@ -110,6 +112,13 @@
         android:layout_marginTop="16dp"
         android:onClick="makeOrder"
         android:text="@string/order" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="sendMail"
+        android:text="@string/email" />
 
 
 </LinearLayout>

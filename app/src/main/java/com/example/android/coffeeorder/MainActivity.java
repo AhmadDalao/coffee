@@ -1,11 +1,15 @@
 package com.example.android.coffeeorder;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -23,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     int chocolatePrice = 3;
     // the price of topping cream
     int creamPrice = 2;
+
+    String TheName;
 
 
     /*
@@ -77,10 +83,14 @@ public class MainActivity extends AppCompatActivity {
         // need to save myname in temp holder first and get the name using getText  , you must also cast the text to be safe.
         String tempHolder = String.valueOf(myname.getText());
         // saving the name from the user along side the price and pass it to the method displayMessage to handle it later
-        String TheName = "The total is: $" + price + "\n";
-        TheName = TheName + "Thank you " + " " + tempHolder;
+        TheName = "Name : " + tempHolder + "\n";
+        TheName = TheName + "Quantity : " + coffeeQuantity + "  \n";
+        TheName = TheName + "Total is : $" + price + "\n";
+        TheName = TheName + "Thank you !! ";
         // passing the variable TheName to the method displayMessage()
         displayMessage(TheName);
+
+
     }
 
     /*
@@ -136,6 +146,44 @@ public class MainActivity extends AppCompatActivity {
             displayQuantity(coffeeQuantity);
         }
     }
+
+
+    /*
+ this method will handle sending an email when the button send by email is clicked
+     */
+
+//    public void composeEmail(String[] addresses, String subject) {
+//        Intent intent = new Intent(Intent.ACTION_SENDTO);
+//        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+//        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+//        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+//        if (intent.resolveActivity(getPackageManager()) != null) {
+//            startActivity(intent);
+//        }
+//    }
+
+
+    public void sendMail(View view) {
+
+        String[] to = {"shadow8evil@gmail.com"};
+
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("message/rfc822");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to); // recipient email addresses
+        emailIntent.putExtra(Intent.EXTRA_TEXT, TheName);// the body of the message
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Sending email..."));
+            finish();
+            Log.i("Finished sending email", "email been sent ");
+        } catch (
+                android.content.ActivityNotFoundException ex) {
+            Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
 
 } // end of class
 

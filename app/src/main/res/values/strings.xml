@@ -10,4 +10,5 @@
     <string name="enter_your_name_please">Enter your name please!</string>
     <string name="chocolate">chocolate</string>
     <string name="cream">cream</string>
+    <string name="email">send by email</string>
 </resources>
