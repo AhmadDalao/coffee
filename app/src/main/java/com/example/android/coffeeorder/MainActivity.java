@@ -82,26 +82,28 @@ public class MainActivity extends AppCompatActivity {
         EditText myname = (EditText) findViewById(R.id.edit_text);
         // need to save myname in temp holder first and get the name using getText  , you must also cast the text to be safe.
         String tempHolder = String.valueOf(myname.getText());
-        // saving the name from the user along side the price and pass it to the method displayMessage to handle it later
-        TheName = "Name : " + tempHolder + "\n";
-        TheName = TheName + "Quantity : " + coffeeQuantity + "  \n";
-        TheName = TheName + "Total is : $" + price + "\n";
-        TheName = TheName + "Thank you !! ";
         // passing the variable TheName to the method displayMessage()
-        displayMessage(TheName);
-
+        displayMessage(tempHolder);
+        //this method will open the email and send the order with the details .
+        sendMail(view);
 
     }
 
     /*
-    this method is going to take the name from the user when entered in edit text
+    this method is going to handle the name taken from the user when entered in edit text
     we need to pass this method to makeOrder method to handle it probably
     going to add the new message alongside the displayPrice method
 
      */
     public void displayMessage(String message) {
         TextView textView = (TextView) findViewById(R.id.price_text);
-        textView.setText(message);
+        // saving the name from the user along side the price and pass it to the method displayMessage to handle it later
+        TheName = "Name : " + message + "\n";
+        TheName = TheName + "Quantity : " + coffeeQuantity + "  \n";
+        TheName = TheName + "Total is : $" + price + "\n";
+        TheName = TheName + "Thank you !! ";
+        textView.setText(TheName);
+
     }
 
     /*
@@ -142,11 +144,11 @@ public class MainActivity extends AppCompatActivity {
    */
     public void AddCoffee(View view) {
         if (coffeeQuantity < 100) {
+            //   Log.v("MainActivity" , "coffee been added" + coffeeQuantity);
             coffeeQuantity += counter;
             displayQuantity(coffeeQuantity);
         }
     }
-
 
     /*
  this method will handle sending an email when the button send by email is clicked
@@ -162,14 +164,10 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 
-
     public void sendMail(View view) {
-
         String[] to = {"shadow8evil@gmail.com"};
-
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("message/rfc822");
+        emailIntent.setData(Uri.parse("mailto:")).setType("message/rfc822");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, to); // recipient email addresses
         emailIntent.putExtra(Intent.EXTRA_TEXT, TheName);// the body of the message
         try {
@@ -182,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
 
 } // end of class
