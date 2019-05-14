@@ -89,6 +89,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    /*
+    calculate price
+     */
+    public int calculatePrice() {
+
+        return coffeeQuantity * 5;
+    }
+
+
     /*
     this method is going to handle the name taken from the user when entered in edit text
     we need to pass this method to makeOrder method to handle it probably
