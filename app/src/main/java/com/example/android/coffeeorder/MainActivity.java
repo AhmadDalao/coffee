@@ -91,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     /*
-    calculate price
+     @param  price
+     @param
      */
     public int calculatePrice() {
 
