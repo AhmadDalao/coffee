@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
     String TheName;
 
-
     /*
     this application display order form to order coffee.
      */
@@ -39,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
     } // end of onCreate
 
     /*
@@ -47,6 +45,25 @@ public class MainActivity extends AppCompatActivity {
      using the displayPrice method and pass in the price variable after multiply it by 5 as a price
      */
     public void makeOrder(View view) {
+
+        // need to get the name from the edit text entered by the user to pass it to displayMessage later on
+        EditText myname = (EditText) findViewById(R.id.edit_text);
+        // need to save myname in temp holder first and get the name using getText  , you must also cast the text to be safe.
+        String tempHolder = String.valueOf(myname.getText());
+        // handle the price when checkboxes are checked  and increase the price accordingly
+        displayPriceWithToppings();
+        // passing the variable tempHolder to the method displayMessage()
+        displayMessage(tempHolder);
+        //this method will open the email and send the order with the details .
+        //   sendMail(view);
+
+    }
+
+    /*
+    this method is going to handle the checkboxes and pass it to makeOrder method
+     */
+    public void displayPriceWithToppings() {
+
         CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
         CheckBox cream = (CheckBox) findViewById(R.id.cream_checkbox);
 
@@ -77,46 +94,27 @@ public class MainActivity extends AppCompatActivity {
         } else price = coffeeQuantity * 5;
         // price is 5
         displayPrice(price);
-
-        // need to get the name from the edit text entered by the user to pass it to displayMessage later on
-        EditText myname = (EditText) findViewById(R.id.edit_text);
-        // need to save myname in temp holder first and get the name using getText  , you must also cast the text to be safe.
-        String tempHolder = String.valueOf(myname.getText());
-        // passing the variable TheName to the method displayMessage()
-        displayMessage(tempHolder);
-        //this method will open the email and send the order with the details .
-        sendMail(view);
-
     }
 
-
-    /*
-     @param  price
-     @param
-     */
     public int calculatePrice() {
 
         return coffeeQuantity * 5;
     }
 
-
     /*
     this method is going to handle the name taken from the user when entered in edit text
     we need to pass this method to makeOrder method to handle it probably
     going to add the new message alongside the displayPrice method
-
      */
     public void displayMessage(String message) {
         TextView textView = (TextView) findViewById(R.id.price_text);
         // saving the name from the user along side the price and pass it to the method displayMessage to handle it later
         TheName = "Name : " + message + "\n";
-        TheName = TheName + "Quantity : " + coffeeQuantity + "  \n";
+        TheName = TheName + "You ordered : " + coffeeQuantity + " cups of coffee" + "  \n";
         TheName = TheName + "Total is : $" + price + "\n";
         TheName = TheName + "Thank you !! ";
         textView.setText(TheName);
-
     }
-
     /*
     this method is going to change the quantity text view and  when every the add and subtract
     buttons are clicked
@@ -125,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayQuantity(int number) {
         TextView textView = (TextView) findViewById(R.id.quantity_text);
-        textView.setText("" + number);
+        textView.setText(String.valueOf(number));
     }
 
     /*
