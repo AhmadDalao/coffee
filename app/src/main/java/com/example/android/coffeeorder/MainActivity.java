@@ -99,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*
+    i don't know how to use this method will try to fix it later
+     */
     public int calculatePrice() {
 
         return coffeeQuantity * 5;
@@ -108,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
     this method is going to handle the name taken from the user when entered in edit text
     we need to pass this method to makeOrder method to handle it probably
     going to add the new message alongside the displayPrice method
+    also it will handle sending an email when clicked on
      */
     public void displayMessage(String message) {
         TextView textView = (TextView) findViewById(R.id.price_text);
@@ -117,17 +121,20 @@ public class MainActivity extends AppCompatActivity {
         message = message + "Total is : $" + price + "\n";
         message = message + "Thank you !! ";
         textView.setText(message);
+
+        final String[] emailAddress = {"shadow8evil@gmail.com"};
         // to send the order through email
         Intent sendEmail = new Intent(Intent.ACTION_SENDTO);
         sendEmail.setData(Uri.parse("mailto:"));
+        // the subject is to be added here
         sendEmail.putExtra(Intent.EXTRA_SUBJECT, "YOUR ORDER");
-        sendEmail.putExtra(Intent.EXTRA_EMAIL, "shadow8evil@gmail.com");
+        // this will handle the email address the recipient
+        sendEmail.putExtra(Intent.EXTRA_EMAIL, emailAddress);
+        // this will handle the email body the " text itself"
         sendEmail.putExtra(Intent.EXTRA_TEXT, message);
         if (sendEmail.resolveActivity(getPackageManager()) != null) {
             startActivity(sendEmail);
         }
-
-
     }
     /*
     this method is going to change the quantity text view and  when every the add and subtract
