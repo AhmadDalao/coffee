@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     // the price of topping cream
     int creamPrice = 2;
 
-    String TheName;
+//    String TheName;
 
     /*
     this application display order form to order coffee.
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         // handling the toppings with if else statement
         if (chocolate.isChecked() && cream.isChecked()) {
 
+
             // ( 1 * 5 ) = 5 price holds 5
             price = (coffeeQuantity * 5);
             // 5 + ( 3 + 2 ) * 1
@@ -94,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
         } else price = coffeeQuantity * 5;
         // price is 5
         displayPrice(price);
+
+
     }
 
     public int calculatePrice() {
@@ -109,11 +112,22 @@ public class MainActivity extends AppCompatActivity {
     public void displayMessage(String message) {
         TextView textView = (TextView) findViewById(R.id.price_text);
         // saving the name from the user along side the price and pass it to the method displayMessage to handle it later
-        TheName = "Name : " + message + "\n";
-        TheName = TheName + "You ordered : " + coffeeQuantity + " cups of coffee" + "  \n";
-        TheName = TheName + "Total is : $" + price + "\n";
-        TheName = TheName + "Thank you !! ";
-        textView.setText(TheName);
+        message = "Name : " + message + "\n";
+        message = message + "You ordered : " + coffeeQuantity + " cups of coffee" + "  \n";
+        message = message + "Total is : $" + price + "\n";
+        message = message + "Thank you !! ";
+        textView.setText(message);
+        // to send the order through email
+        Intent sendEmail = new Intent(Intent.ACTION_SENDTO);
+        sendEmail.setData(Uri.parse("mailto:"));
+        sendEmail.putExtra(Intent.EXTRA_SUBJECT, "YOUR ORDER");
+        sendEmail.putExtra(Intent.EXTRA_EMAIL, "shadow8evil@gmail.com");
+        sendEmail.putExtra(Intent.EXTRA_TEXT, message);
+        if (sendEmail.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendEmail);
+        }
+
+
     }
     /*
     this method is going to change the quantity text view and  when every the add and subtract
@@ -173,22 +187,22 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 
-    public void sendMail(View view) {
-        String[] to = {"shadow8evil@gmail.com"};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:")).setType("message/rfc822");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, to); // recipient email addresses
-        emailIntent.putExtra(Intent.EXTRA_TEXT, TheName);// the body of the message
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Sending email..."));
-            finish();
-            Log.i("Finished sending email", "email been sent ");
-        } catch (
-                android.content.ActivityNotFoundException ex) {
-            Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
-
-    }
+//    public void sendMail(View view) {
+//        String[] to = {"shadow8evil@gmail.com"};
+//        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//        emailIntent.setData(Uri.parse("mailto:")).setType("message/rfc822");
+//        emailIntent.putExtra(Intent.EXTRA_EMAIL, to); // recipient email addresses
+//        emailIntent.putExtra(Intent.EXTRA_TEXT, TheName);// the body of the message
+//        try {
+//            startActivity(Intent.createChooser(emailIntent, "Sending email..."));
+//            finish();
+//            Log.i("Finished sending email", "email been sent ");
+//        } catch (
+//                android.content.ActivityNotFoundException ex) {
+//            Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+//        }
+//
+//    }
 
 
 } // end of class
