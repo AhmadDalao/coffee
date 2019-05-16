@@ -117,20 +117,5 @@
             android:onClick="makeOrder"
             android:text="@string/order" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:onClick="sendMail"
-            android:text="@string/email" />
-
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorAccent" />
-
-
     </LinearLayout>
 </ScrollView>

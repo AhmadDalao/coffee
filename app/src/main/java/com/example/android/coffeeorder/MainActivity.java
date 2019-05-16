@@ -56,12 +56,12 @@ public class MainActivity extends AppCompatActivity {
         displayMessage(tempHolder);
         //this method will open the email and send the order with the details .
         //   sendMail(view);
-
     }
 
     /*
     this method is going to handle the checkboxes and pass it to makeOrder method
      */
+
     public void displayPriceWithToppings() {
 
         CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
@@ -70,29 +70,29 @@ public class MainActivity extends AppCompatActivity {
         // handling the toppings with if else statement
         if (chocolate.isChecked() && cream.isChecked()) {
 
-
             // ( 1 * 5 ) = 5 price holds 5
-            price = (coffeeQuantity * 5);
+            price = calculatePrice(coffeeQuantity);
             // 5 + ( 3 + 2 ) * 1
             price = price + (chocolatePrice + creamPrice) * coffeeQuantity;
             // price is 10
             displayPrice(price);
         } else if (chocolate.isChecked()) {
             // ( 1 * 5 ) = 5 price holds
-            price = (coffeeQuantity * 5);
+            price = calculatePrice(coffeeQuantity);
             // 5 + 3 * 1
             price = price + chocolatePrice * coffeeQuantity;
             // price is 8
             displayPrice(price);
         } else if (cream.isChecked()) {
             // ( 1 * 5 ) = 5 price is 5
-            price = (coffeeQuantity * 5);
+            price = calculatePrice(coffeeQuantity);
             // 5 + 2 * 1
             price = price + creamPrice * coffeeQuantity;
             // price is 7
             displayPrice(price);
             // 1 * 5 = 5
-        } else price = coffeeQuantity * 5;
+        } else
+            price = calculatePrice(coffeeQuantity);
         // price is 5
         displayPrice(price);
 
@@ -100,11 +100,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    i don't know how to use this method will try to fix it later
+    this method will calaculte the price of the coffee cup
      */
-    public int calculatePrice() {
 
-        return coffeeQuantity * 5;
+    public int calculatePrice(int number) {
+        return number * 5;
     }
 
     /*
@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
     going to add the new message alongside the displayPrice method
     also it will handle sending an email when clicked on
      */
+
     public void displayMessage(String message) {
         TextView textView = (TextView) findViewById(R.id.price_text);
         // saving the name from the user along side the price and pass it to the method displayMessage to handle it later
@@ -121,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
         message = message + "Total is : $" + price + "\n";
         message = message + "Thank you !! ";
         textView.setText(message);
-
 
         // to send the order through email
         // this String contains the email intended to send to
@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(sendEmail);
         }
     }
+
     /*
     this method is going to change the quantity text view and  when every the add and subtract
     buttons are clicked
