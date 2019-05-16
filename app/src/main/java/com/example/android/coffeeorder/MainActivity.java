@@ -122,8 +122,10 @@ public class MainActivity extends AppCompatActivity {
         message = message + "Thank you !! ";
         textView.setText(message);
 
-        final String[] emailAddress = {"shadow8evil@gmail.com"};
+
         // to send the order through email
+        // this String contains the email intended to send to
+        final String[] emailAddress = {"shadow8evil@gmail.com"};
         Intent sendEmail = new Intent(Intent.ACTION_SENDTO);
         sendEmail.setData(Uri.parse("mailto:"));
         // the subject is to be added here
@@ -179,38 +181,6 @@ public class MainActivity extends AppCompatActivity {
             displayQuantity(coffeeQuantity);
         }
     }
-
-    /*
- this method will handle sending an email when the button send by email is clicked
-     */
-
-//    public void composeEmail(String[] addresses, String subject) {
-//        Intent intent = new Intent(Intent.ACTION_SENDTO);
-//        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-//        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
-//        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-//        if (intent.resolveActivity(getPackageManager()) != null) {
-//            startActivity(intent);
-//        }
-//    }
-
-//    public void sendMail(View view) {
-//        String[] to = {"shadow8evil@gmail.com"};
-//        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-//        emailIntent.setData(Uri.parse("mailto:")).setType("message/rfc822");
-//        emailIntent.putExtra(Intent.EXTRA_EMAIL, to); // recipient email addresses
-//        emailIntent.putExtra(Intent.EXTRA_TEXT, TheName);// the body of the message
-//        try {
-//            startActivity(Intent.createChooser(emailIntent, "Sending email..."));
-//            finish();
-//            Log.i("Finished sending email", "email been sent ");
-//        } catch (
-//                android.content.ActivityNotFoundException ex) {
-//            Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-//        }
-//
-//    }
-
 
 } // end of class
 
