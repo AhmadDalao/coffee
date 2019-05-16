@@ -22,13 +22,10 @@ public class MainActivity extends AppCompatActivity {
     int counter = 1;
     // make a price variable set it to 0
     int price = 0;
-
     // the price of topping chocolate
     int chocolatePrice = 3;
     // the price of topping cream
     int creamPrice = 2;
-
-//    String TheName;
 
     /*
     this application display order form to order coffee.
@@ -55,14 +52,13 @@ public class MainActivity extends AppCompatActivity {
         // passing the variable tempHolder to the method displayMessage()
         displayMessage(tempHolder);
         //this method will open the email and send the order with the details .
-        //   sendMail(view);
     }
 
     /*
     this method is going to handle the checkboxes and pass it to makeOrder method
      */
 
-    public void displayPriceWithToppings() {
+    private void displayPriceWithToppings() {
 
         CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
         CheckBox cream = (CheckBox) findViewById(R.id.cream_checkbox);
@@ -100,11 +96,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    this method will calaculte the price of the coffee cup
+    this method will calculate the price of the coffee cup
      */
 
-    public int calculatePrice(int number) {
-        return number * 5;
+    private int calculatePrice(int price) {
+        return price * 5;
     }
 
     /*
@@ -114,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     also it will handle sending an email when clicked on
      */
 
-    public void displayMessage(String message) {
+    private void displayMessage(String message) {
         TextView textView = (TextView) findViewById(R.id.price_text);
         // saving the name from the user along side the price and pass it to the method displayMessage to handle it later
         message = "Name : " + message + "\n";
@@ -145,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
     basically it will display the quantity
      */
 
-    public void displayQuantity(int number) {
+    private void displayQuantity(int number) {
         TextView textView = (TextView) findViewById(R.id.quantity_text);
         textView.setText(String.valueOf(number));
     }
@@ -155,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
     it will change the price text view and add the price based on the coffee quantity
     the price text will change to 0.00  that's why we are using number format and get getCurrencyInstance
      */
-    public void displayPrice(int coffeePrice) {
+    private void displayPrice(int coffeePrice) {
         TextView coffee = (TextView) findViewById(R.id.price_text);
         coffee.setText(NumberFormat.getCurrencyInstance().format(coffeePrice));
     }
