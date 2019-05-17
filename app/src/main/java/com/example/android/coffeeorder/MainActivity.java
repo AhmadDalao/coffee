@@ -55,19 +55,15 @@ public class MainActivity extends AppCompatActivity {
         displayQuantity(coffeeQuantity);
     }
 
-    /*
-    this method calculates the coffee price
-
-    @param number takes the coffeeQuantity and do the math for it
-
-    @param hasChocolate takes a boolean variable to calculate the price when its checked and increase
-    the price by 3 for each coffee cup with chocolate
-
-    @param hasCream takes a boolean variable to calculate the price when its checked and increase
-    the price by 2 for each coffee cup with cream
-
-    @return	  it will return the price back
-
+    /**
+     * this method calculates the coffee price
+     *
+     * @param number       takes the coffeeQuantity and do the math for it
+     * @param hasChocolate takes a boolean variable to calculate the price when its checked and increase
+     *                     the price by 3 for each coffee cup with chocolate
+     * @param hasCream     takes a boolean variable to calculate the price when its checked and increase
+     *                     the price by 2 for each coffee cup with cream
+     * @return it will return the price back
      */
     public int calculatePrice(int number, boolean hasChocolate, boolean hasCream) {
         int price = 5;
@@ -97,9 +93,10 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(String.valueOf(number));
     }
 
-    /*
-    this method takes the details passed to it from makeOrder and display it inside price_text field
-    @param TakeDetail will show the details on the screen
+    /**
+     * this method takes the details passed to it from makeOrder and display it inside price_text field
+     *
+     * @param TakeDetail will show the details on the screen
      */
     public void displayDetail(String TakeDetail) {
         TextView textView = findViewById(R.id.price_text);
@@ -107,23 +104,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*
-    this method will prepare the order summary  and return and string contains all the required information
-
-    @param nameFromUser is the name we pass from the editText from makeOrder method
-
-    @param price we pass from makeOrder calculated price for sure
-
-    @param hasChocolate is the variable we pass from makeOrder method too , it will show true next to "With chocolate"
-     if the checkbox been clicked on
-
-    @param hasCream is the variable we pass from makeOrder method too , it will show true next to "With cream "
-    if the checkbox been clicked on
-
-    @return theDetail this String variable contains all the required information for the order summary and
-    it will be return once the method been called over
-
-     */
+    /**
+     * this method will prepare the order summary  and return and string contains all the required information
+     *
+     * @param nameFromUser is the name we pass from the editText from makeOrder method
+     * @param price        we pass from makeOrder calculated price for sure
+     * @param hasChocolate is the variable we pass from makeOrder method too , it will show true next to "With chocolate"
+     *                     if the checkbox been clicked on
+     * @param hasCream     is the variable we pass from makeOrder method too , it will show true next to "With cream "
+     *                     if the checkbox been clicked on
+     * @return theDetail this String variable contains all the required information for the order summary and
+     * it will be return once the method been called over
+     **/
     public String displayMessage(String nameFromUser, int price, boolean hasChocolate, boolean hasCream) {
         String theDetail = nameFromUser;
         theDetail = "Name: " + theDetail + "\n";
@@ -169,8 +161,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /*
-    this method will handle sending an email when clicked
+    /**
+     * this method will handle sending an email when clicked
+     *
+     * @param detail will take the information needed and pass it as a text in the email
      */
     public void sendEmailHelper(String detail) {
         // to send the order through the email when makeOrder is clicked on
