@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "you cant have less than 1 cup of coffee", Toast.LENGTH_LONG).show();
         } else
             coffeeQuantity = coffeeQuantity - 1;
+        //calling the displayQuantity() method
         displayQuantity(coffeeQuantity);
     }
 
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "you cant have more than 100 cups of coffee!!", Toast.LENGTH_SHORT).show();
         } else
             coffeeQuantity = coffeeQuantity + 1;
+        //calling the displayQuantity() method
         displayQuantity(coffeeQuantity);
     }
 
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * this method takes the details passed to it from makeOrder and display it inside price_text field
      *
-     * @param TakeDetail will show the details on the screen
+     * @param TakeDetail will show the details on the screen passed to it from {@makeOrder} method
      */
     public void displayDetail(String TakeDetail) {
         TextView textView = findViewById(R.id.price_text);
@@ -141,11 +143,14 @@ public class MainActivity extends AppCompatActivity {
         // making boolean variable to pass it on later and to check if the checkbox been clicked on
         boolean hasCream = cream.isChecked();
         boolean hasChocolate = chocolate.isChecked();
+        //calling the method calculatePrice()
         // making price variable which will be passed later on to displayMessage() method
         //i need  assign  calculatePrice() method and pass the following the coffeeQuantity and both the boolean variables
         int price = calculatePrice(coffeeQuantity, hasChocolate, hasCream);
+        //calling the method displayMessage()
         // assigning the displayMessage() method to String detail and it will rerun string contains the orderSummary
         final String detail = displayMessage(NameHolder, price, hasChocolate, hasCream);
+        //calling the method displayDetail()
         // passing the String detail to be printed on the screen containing all the information : name , price , if the user wants
         //chocolate or cream it will all be shown on the screen
         displayDetail(detail);
@@ -155,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
         mybutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //calling the method sendEmailHelper
+                // and pass the detail variable to it
                 sendEmailHelper(detail);
             }
         });
