@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
      *                     the price by 2 for each coffee cup with cream
      * @return it will return the price back
      */
-    public int calculatePrice(int number, boolean hasChocolate, boolean hasCream) {
+    private int calculatePrice(int number, boolean hasChocolate, boolean hasCream) {
         int price = 5;
         if (hasChocolate && hasCream) {
             // 5 =  5 * 5 = 25
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param TakeDetail will show the details on the screen passed to it from {@makeOrder} method
      */
-    public void displayDetail(String TakeDetail) {
+    private void displayDetail(String TakeDetail) {
         TextView textView = findViewById(R.id.price_text);
         textView.setText(TakeDetail);
 
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
      * @return theDetail this String variable contains all the required information for the order summary and
      * it will be return once the method been called over
      **/
-    public String displayMessage(String nameFromUser, int price, boolean hasChocolate, boolean hasCream) {
+    private String displayMessage(String nameFromUser, int price, boolean hasChocolate, boolean hasCream) {
         String theDetail = nameFromUser;
         theDetail = "Name: " + theDetail + "\n";
         theDetail = theDetail + "with chocolate:  " + hasChocolate + "\n";
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param detail will take the information needed and pass it as a text in the email
      */
-    public void sendEmailHelper(String detail) {
+    private void sendEmailHelper(String detail) {
         // to send the order through the email when makeOrder is clicked on
         final String[] addresses = {"shadow8evil@gmail.com"};
         Intent intent = new Intent(Intent.ACTION_SENDTO);
