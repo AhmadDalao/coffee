@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -15,17 +14,8 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-
     // represents the coffee quantity with this variable
-    int coffeeQuantity = 0;
-    // making a counter to increase or decrease later
-    int counter = 1;
-    // make a price variable set it to 0
-    int price = 0;
-    // the price of topping chocolate
-    int chocolatePrice = 3;
-    // the price of topping cream
-    int creamPrice = 2;
+    int coffeeQuantity = 1;
 
     /*
     this application display order form to order coffee.
@@ -43,84 +33,24 @@ public class MainActivity extends AppCompatActivity {
      */
     public void makeOrder(View view) {
 
+        CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        CheckBox cream = (CheckBox) findViewById(R.id.cream_checkbox);
+        boolean Haschocolate = chocolate.isChecked();
+        boolean HasCream = cream.isChecked();
+
+        int PriceMessage = calculatePrice(Haschocolate, HasCream);
+
         // need to get the name from the edit text entered by the user to pass it to displayMessage later on
         EditText myname = (EditText) findViewById(R.id.edit_text);
         // need to save myname in temp holder first and get the name using getText  , you must also cast the text to be safe.
         String tempHolder = String.valueOf(myname.getText());
         // handle the price when checkboxes are checked  and increase the price accordingly
-        displayPriceWithToppings();
         // passing the variable tempHolder to the method displayMessage()
-        displayMessage(tempHolder);
+        String message = displayMessage(tempHolder, Haschocolate, HasCream, PriceMessage);
         //this method will open the email and send the order with the details .
-    }
 
-    /*
-    this method is going to handle the checkboxes and pass it to makeOrder method
-     */
-
-    private void displayPriceWithToppings() {
-
-        CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
-        CheckBox cream = (CheckBox) findViewById(R.id.cream_checkbox);
-
-        // handling the toppings with if else statement
-        if (chocolate.isChecked() && cream.isChecked()) {
-
-            // ( 1 * 5 ) = 5 price holds 5
-            price = calculatePrice(coffeeQuantity);
-            // 5 + ( 3 + 2 ) * 1
-            price = price + (chocolatePrice + creamPrice) * coffeeQuantity;
-            // price is 10
-            displayPrice(price);
-        } else if (chocolate.isChecked()) {
-            // ( 1 * 5 ) = 5 price holds
-            price = calculatePrice(coffeeQuantity);
-            // 5 + 3 * 1
-            price = price + chocolatePrice * coffeeQuantity;
-            // price is 8
-            displayPrice(price);
-        } else if (cream.isChecked()) {
-            // ( 1 * 5 ) = 5 price is 5
-            price = calculatePrice(coffeeQuantity);
-            // 5 + 2 * 1
-            price = price + creamPrice * coffeeQuantity;
-            // price is 7
-            displayPrice(price);
-            // 1 * 5 = 5
-        } else
-            price = calculatePrice(coffeeQuantity);
-        // price is 5
-        displayPrice(price);
-
-
-    }
-
-    /*
-    this method will calculate the price of the coffee cup
-     */
-
-    private int calculatePrice(int price) {
-        return price * 5;
-    }
-
-    /*
-    this method is going to handle the name taken from the user when entered in edit text
-    we need to pass this method to makeOrder method to handle it probably
-    going to add the new message alongside the displayPrice method
-    also it will handle sending an email when clicked on
-     */
-
-    private void displayMessage(String message) {
-        TextView textView = (TextView) findViewById(R.id.price_text);
-        // saving the name from the user along side the price and pass it to the method displayMessage to handle it later
-        message = "Name : " + message + "\n";
-        message = message + "You ordered : " + coffeeQuantity + " cups of coffee" + "  \n";
-        message = message + "Total is : $" + price + "\n";
-        message = message + "Thank you !! ";
-        textView.setText(message);
-
-        // to send the order through email
-        // this String contains the email intended to send to
+        //    to send the order through email
+        //   this String contains the email intended to send to
         final String[] emailAddress = {"shadow8evil@gmail.com"};
         Intent sendEmail = new Intent(Intent.ACTION_SENDTO);
         sendEmail.setData(Uri.parse("mailto:"));
@@ -133,6 +63,47 @@ public class MainActivity extends AppCompatActivity {
         if (sendEmail.resolveActivity(getPackageManager()) != null) {
             startActivity(sendEmail);
         }
+        displayPrice(message);
+    }
+
+    /*
+    this method will calculate the price of the coffee cup
+     */
+
+    private int calculatePrice(boolean hasChocolate, boolean hasCream) {
+        int price = 5;
+        if (hasChocolate && hasCream) {
+            price = price * coffeeQuantity;
+            price = price + (3 + 2) * coffeeQuantity;
+        } else if (hasChocolate) {
+            price = price * coffeeQuantity;
+            price = price + (3) * coffeeQuantity;
+        } else if (hasCream) {
+            price = price * coffeeQuantity;
+            price = price + (2) * coffeeQuantity;
+        } else
+            price = price * coffeeQuantity;
+
+        return price;
+    }
+
+    /*
+    this method is going to handle the name taken from the user when entered in edit text
+    we need to pass this method to makeOrder method to handle it probably
+    going to add the new message alongside the displayPrice method
+    also it will handle sending an email when clicked on
+
+     */
+
+    private String displayMessage(String message, boolean haChocolate, boolean hasCream, int price) {
+        // saving the name from the user along side the price and pass it to the method displayMessage to handle it later
+        message = "Name : " + message + "\n";
+        message = message + "You ordered : " + coffeeQuantity + " cups of coffee" + "  \n";
+        message = message + "With chocolate ?" + haChocolate + "\n";
+        message = message + "With Cream ?" + hasCream + "\n ";
+        message = message + "Total is : $" + price + "\n";
+        message = message + "Thank you !! ";
+        return message;
     }
 
     /*
@@ -151,9 +122,9 @@ public class MainActivity extends AppCompatActivity {
     it will change the price text view and add the price based on the coffee quantity
     the price text will change to 0.00  that's why we are using number format and get getCurrencyInstance
      */
-    private void displayPrice(int coffeePrice) {
+    private void displayPrice(String finalOrderSummray) {
         TextView coffee = (TextView) findViewById(R.id.price_text);
-        coffee.setText(NumberFormat.getCurrencyInstance().format(coffeePrice));
+        coffee.setText(finalOrderSummray);
     }
 
     /*
@@ -161,10 +132,12 @@ public class MainActivity extends AppCompatActivity {
     you need to call the method displayQuantity to pass the quantity later on
      */
     public void SubtractCoffee(View view) {
-        if (coffeeQuantity > 0) {
-            coffeeQuantity -= counter;
-            displayQuantity(coffeeQuantity);
-        }
+        if (coffeeQuantity == 1) {
+            Toast.makeText(this, "you cant have less than 1 cup", Toast.LENGTH_SHORT).show();
+
+        } else
+            coffeeQuantity -= 1;
+        displayQuantity(coffeeQuantity);
     }
 
     /*
@@ -172,11 +145,12 @@ public class MainActivity extends AppCompatActivity {
   you need to call the method displayQuantity to pass the quantity later on
    */
     public void AddCoffee(View view) {
-        if (coffeeQuantity < 100) {
+        if (coffeeQuantity >= 100) {
+            Toast.makeText(this, "you cant order over a 100 cup", Toast.LENGTH_SHORT).show();
             //   Log.v("MainActivity" , "coffee been added" + coffeeQuantity);
-            coffeeQuantity += counter;
-            displayQuantity(coffeeQuantity);
-        }
+        } else
+            coffeeQuantity += 1;
+        displayQuantity(coffeeQuantity);
     }
 
 } // end of class
