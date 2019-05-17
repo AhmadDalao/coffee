@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * this method will prepare the order summary  and return and string contains all the required information
      *
-     * @param nameFromUser is the name we pass from the editText from makeOrder method
+     * @param nameFromUser is the name we passed from the editText taken from makeOrder method
      * @param price        we pass from makeOrder calculated price for sure
      * @param hasChocolate is the variable we pass from makeOrder method too , it will show true next to "With chocolate"
      *                     if the checkbox been clicked on
