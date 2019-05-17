@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
     } // end of onCreate
 
@@ -151,16 +153,33 @@ public class MainActivity extends AppCompatActivity {
         //i need  assign  calculatePrice() method and pass the following the coffeeQuantity and both the boolean variables
         int price = calculatePrice(coffeeQuantity, hasChocolate, hasCream);
         // assigning the displayMessage() method to String detail and it will rerun string contains the orderSummary
-        String detail = displayMessage(NameHolder, price, hasChocolate, hasCream);
+        final String detail = displayMessage(NameHolder, price, hasChocolate, hasCream);
         // passing the String detail to be printed on the screen containing all the information : name , price , if the user wants
         //chocolate or cream it will all be shown on the screen
         displayDetail(detail);
+
+        // send the email when button send by email is clicked on
+        Button mybutton = (Button) findViewById(R.id.send);
+        mybutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendEmailHelper(detail);
+            }
+        });
+    }
+
+
+    /*
+    this method will handle sending an email when clicked
+     */
+    public void sendEmailHelper(String detail) {
         // to send the order through the email when makeOrder is clicked on
         final String[] addresses = {"shadow8evil@gmail.com"};
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, addresses);
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Your order \n" + detail);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Your coffee order \n");
+        intent.putExtra(Intent.EXTRA_TEXT, detail);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }

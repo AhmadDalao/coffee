@@ -13,4 +13,5 @@
     <string name="email">send by email</string>
     <string name="_1">1</string>
     <string name="orderDetails">Order details</string>
+    <string name="send_by_email">send by email</string>
 </resources>
