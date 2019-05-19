@@ -15,6 +15,9 @@
     <string name="orderDetails">Order details</string>
     <string name="send_by_email">send by email</string>
     <string name="toppings">Toppings</string>
+
+
+    <!--  used in main activity  at the String displayMessage  -->
     <string name="name">Name: </string>
     <string name="WithCream">with cream: </string>
     <string name="Withchocolate">with chocolate: </string>
