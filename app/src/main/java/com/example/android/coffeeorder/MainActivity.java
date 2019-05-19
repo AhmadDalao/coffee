@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -143,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
         // making boolean variable to pass it on later and to check if the checkbox been clicked on
         boolean hasCream = cream.isChecked();
         boolean hasChocolate = chocolate.isChecked();
+        Log.v("MainActivity", "    has chocolate : " + hasChocolate);
+
         //calling the method calculatePrice()
         // making price variable which will be passed later on to displayMessage() method
         //i need  assign  calculatePrice() method and pass the following the coffeeQuantity and both the boolean variables
