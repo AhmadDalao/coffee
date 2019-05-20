@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     private String displayMessage(String nameFromUser, int price, boolean hasChocolate, boolean hasCream) {
         String theDetail = nameFromUser;
         theDetail = getString(R.string.name) + " " + theDetail + "\n";
-        theDetail = theDetail + getResources().getString(R.string.Withchocolate + " " + hasChocolate + "\n";
+        theDetail = theDetail + getResources().getString(R.string.Withchocolate) + " " + hasChocolate + "\n";
         theDetail = theDetail + getString(R.string.WithCream) + " " + hasCream + "\n";
         theDetail = theDetail + getString(R.string.total) + " " + price + "\n";
         theDetail = theDetail + getString(R.string.thankYou);
