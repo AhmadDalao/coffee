@@ -13,7 +13,6 @@
         android:padding="16dp"
         tools:context=".MainActivity">
 
-
         <EditText
             android:id="@+id/edit_text"
             android:layout_width="match_parent"
@@ -21,14 +20,8 @@
             android:hint="@string/enter_your_name_please" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/quantity"
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
-            android:textSize="32sp"
-            android:textStyle="italic" />
+            style="@style/customStyleForTextView"
+            android:text="@string/quantity" />
 
 
         <LinearLayout
@@ -50,9 +43,9 @@
                 android:id="@+id/quantity_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
-                android:layout_gravity="center_horizontal"
                 android:text="@string/_1"
                 android:textColor="@android:color/black"
                 android:textSize="32sp"
@@ -70,14 +63,8 @@
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/toppings"
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
-            android:textSize="32sp"
-            android:textStyle="italic" />
+            style="@style/customStyleForTextView"
+            android:text="@string/toppings" />
 
 
         <CheckBox
@@ -101,14 +88,8 @@
             android:textColor="@android:color/black" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/orderDetails"
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
-            android:textSize="32sp"
-            android:textStyle="italic" />
+            style="@style/customStyleForTextView"
+            android:text="@string/orderDetails" />
 
         <TextView
             android:id="@+id/price_text"
