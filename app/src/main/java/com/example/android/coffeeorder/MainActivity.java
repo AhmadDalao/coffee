@@ -120,19 +120,12 @@ public class MainActivity extends AppCompatActivity {
      * it will be return once the method been called over
      **/
     private String displayMessage(String nameFromUser, int price, boolean hasChocolate, boolean hasCream) {
-        String Name = getResources().getString(R.string.name);
-        String withChocolateString = getResources().getString(R.string.Withchocolate);
-        String withCreamString = getResources().getString(R.string.WithCream);
-        String total = getResources().getString(R.string.total);
-        String thankYou = getResources().getString(R.string.thankYou);
         String theDetail = nameFromUser;
-
-
-        theDetail = Name + " " + theDetail + "\n";
-        theDetail = theDetail + withChocolateString + " " + hasChocolate + "\n";
-        theDetail = theDetail + withCreamString + " " + hasCream + "\n";
-        theDetail = theDetail + total + " " + price + "\n";
-        theDetail = theDetail + thankYou;
+        theDetail = getString(R.string.name) + " " + theDetail + "\n";
+        theDetail = theDetail + getResources().getString(R.string.Withchocolate + " " + hasChocolate + "\n";
+        theDetail = theDetail + getString(R.string.WithCream) + " " + hasCream + "\n";
+        theDetail = theDetail + getString(R.string.total) + " " + price + "\n";
+        theDetail = theDetail + getString(R.string.thankYou);
         return theDetail;
     }
 
