@@ -158,36 +158,37 @@ public class MainActivity extends AppCompatActivity {
         //chocolate or cream it will all be shown on the screen
         displayDetail(detail);
 
-        // send the email when button send by email is clicked on
-        Button mybutton = (Button) findViewById(R.id.send);
-        mybutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //calling the method sendEmailHelper
-                // and pass the detail variable to it
-                sendEmailHelper(detail);
-            }
-        });
+
     }
 
 
     /**
-     * this method will handle sending an email when clicked
-     *
-     * @param detail will take the information needed and pass it as a text in the email
+     * this method will handle sending the detail by  email when buttton send by email is clicked on
      */
-    private void sendEmailHelper(String detail) {
-        // to send the order through the email when makeOrder is clicked on
-        final String[] addresses = {"shadow8evil@gmail.com"};
+    public void sendbyEmail(View view) {
+
+        EditText editText = (EditText) findViewById(R.id.edit_text);
+        String tempHolder = String.valueOf(editText.getText());
+
+        CheckBox checkBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        boolean hasChocolate = checkBox.isChecked();
+
+        CheckBox checkBox2 = (CheckBox) findViewById(R.id.cream_checkbox);
+        boolean hasCream = checkBox2.isChecked();
+
+        int price = calculatePrice(coffeeQuantity, hasChocolate, hasCream);
+
+        String detail = displayMessage(tempHolder, price, hasChocolate, hasCream);
+
+        final String[] addresses = {"shadow8eveil@gmail.com"};
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, addresses);
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Your coffee order \n");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Your Coffee order");
         intent.putExtra(Intent.EXTRA_TEXT, detail);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
     }
-
 } // end of class
 
