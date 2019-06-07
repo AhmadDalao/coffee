@@ -12,8 +12,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.NumberFormat;
-
 public class MainActivity extends AppCompatActivity {
 
     // represents the coffee quantity with this variable
@@ -159,26 +157,25 @@ public class MainActivity extends AppCompatActivity {
         displayDetail(detail);
 
 
+        //finding the view for the send by email button
+        Button button = (Button) findViewById(R.id.send);
+        //setting on clicklistener to do action
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //calling the method sendbyEmail and pass in the detail variable
+                sendByEmail(detail);
+            }
+        });
     }
 
 
     /**
-     * this method will handle sending the detail by  email when buttton send by email is clicked on
+     * this method will handle sending the detail by  email when Button send by email is clicked on
+     *
+     * @param detail receive the order detail and send it to the user by email
      */
-    public void sendbyEmail(View view) {
-
-        EditText editText = (EditText) findViewById(R.id.edit_text);
-        String tempHolder = String.valueOf(editText.getText());
-
-        CheckBox checkBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
-        boolean hasChocolate = checkBox.isChecked();
-
-        CheckBox checkBox2 = (CheckBox) findViewById(R.id.cream_checkbox);
-        boolean hasCream = checkBox2.isChecked();
-
-        int price = calculatePrice(coffeeQuantity, hasChocolate, hasCream);
-
-        String detail = displayMessage(tempHolder, price, hasChocolate, hasCream);
+    public void sendByEmail(String detail) {
 
         final String[] addresses = {"shadow8eveil@gmail.com"};
         Intent intent = new Intent(Intent.ACTION_SENDTO);
